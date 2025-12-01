@@ -13,38 +13,31 @@ impl CycleNumber {
             return 0;
         }
 
-        // Determine clicks
-        // if amount is positive, then it's just the sum of self + amount / 100
-        // if negative then it's self + amount / -100 if self + amount is <= 0, else 0
-        // keep in mind the case of it landing on 0, that counts too
+        let mut returned: u32 = 0;
+        returned += (if amount < 0 {
+            -amount
+        } else {
+            amount
+        } / 100) as u32;
 
-        let old_self = self.0;
-        self.0 += amount;
-        let returned: u32;
+        let old = self.0;
 
-        if (self.0 < 1 || self.0 > 99) && old_self != 0 {
-            println!("{}", self.0);
-            if amount > 0 {
-                returned = (self.0 / 100) as u32;
-                println!("{}: adding {}", amount, returned);
-            } else {
-                if self.0 > 0 {
-                    returned = 0;
-                } else {
-                    returned = (self.0 / -100 + 1) as u32;
-                    println!("{}: adding {}", amount, returned);
-                }
+        let mut tmp_result = self.0 + (amount % 100);
+
+        // could pattern matching be used here?
+        if tmp_result > 99 {
+            returned += 1;
+            tmp_result -= 100;
+        } else if tmp_result < 0 {
+            if old != 0{
+            returned += 1;
             }
-        } else {
-            returned = 0;
+            tmp_result += 100;
+        } else if tmp_result == 0 {
+            returned += 1;
         }
 
-        let tmp_result = self.0 % 100;
-        if tmp_result < 0 {
-            self.0 = tmp_result + 100;
-        } else {
-            self.0 = tmp_result;
-        }
+        self.0 = tmp_result;
 
         returned
     }

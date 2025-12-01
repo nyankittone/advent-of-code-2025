@@ -13,12 +13,39 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +62 term://~/Programming/Advent_Of_Code_2025//289675:/usr/bin/bash
+badd +1 term://~/Programming/Advent_Of_Code_2025//289675:/usr/bin/bash
 badd +1 src/main.rs
-badd +1 src/day1.rs
-badd +0 src/lib.rs
-badd +0 LICENSE
+badd +32 src/day1.rs
+badd +1 src/lib.rs
+badd +1 LICENSE
 badd +14 README.md
+badd +196 ~/Programming/Eggsh/main.c
+badd +19 ~/Programming/Eggsh/todo.md
+badd +1 ~/Programming/Eggsh/Makefile
+badd +208 ~/Programming/Eggsh/src/command_builder_and_tokenizer.c
+badd +84 ~/Programming/Eggsh/include/tokenizer.h
+badd +9 ~/Programming/Eggsh/include/testing/tokenizer_runner.h
+badd +1 ~/Programming/Eggsh/tests_src/tokenizer_runner.c
+badd +194 ~/Programming/Eggsh/src/hash_map.c
+badd +97 ~/Programming/Eggsh/src/command_runner.c
+badd +135 term://~/Programming/Eggsh//478306:/usr/bin/bash
+badd +75 term://~/Programming/Eggsh//523606:/usr/bin/bash
+badd +1 ~/Source_Code/dash/src/alias.c
+badd +329 ~/Source_Code/dash/src/trap.c
+badd +45 ~/Source_Code/dash/src/main.h
+badd +53 ~/Source_Code/dash/src/options.h
+badd +108 ~/Source_Code/dash/src/options.c
+badd +21 man://sigsetops(3)
+badd +95 ~/Source_Code/dash/src/jobs.h
+badd +61 ~/Source_Code/dash/src/error.h
+badd +92 ~/Source_Code/dash/src/error.c
+badd +1 man://setjmp(3)
+badd +174 ~/Source_Code/dash/src/main.c
+badd +94 ~/Source_Code/dash/src/shell.h
+badd +22 man://sigqueue(3)
+badd +14 man://sigaction(3p)
+badd +0 man://sigaction(2)
+badd +0 man://signal(7)
 argglobal
 %argdel
 set stal=2
@@ -46,7 +73,7 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 exe 'vert 1resize ' . ((&columns * 119 + 119) / 238)
-exe '2resize ' . ((&lines * 32 + 28) / 57)
+exe '2resize ' . ((&lines * 31 + 28) / 57)
 exe 'vert 2resize ' . ((&columns * 118 + 119) / 238)
 exe '3resize ' . ((&lines * 22 + 28) / 57)
 exe 'vert 3resize ' . ((&columns * 118 + 119) / 238)
@@ -62,7 +89,7 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 27) / 55)
+let s:l = 1 - ((0 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -86,7 +113,7 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 16) / 32)
+let s:l = 1 - ((0 * winheight(0) + 15) / 31)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -117,7 +144,7 @@ normal! 0
 lcd ~/Programming/Advent_Of_Code_2025
 wincmd w
 exe 'vert 1resize ' . ((&columns * 119 + 119) / 238)
-exe '2resize ' . ((&lines * 32 + 28) / 57)
+exe '2resize ' . ((&lines * 31 + 28) / 57)
 exe 'vert 2resize ' . ((&columns * 118 + 119) / 238)
 exe '3resize ' . ((&lines * 22 + 28) / 57)
 exe 'vert 3resize ' . ((&columns * 118 + 119) / 238)
@@ -152,12 +179,12 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 27) / 54)
+let s:l = 42 - ((41 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
-normal! 0
+keepjumps 42
+normal! 016|
 lcd ~/Programming/Advent_Of_Code_2025
 wincmd w
 argglobal
@@ -174,11 +201,11 @@ setlocal foldlevel=0
 setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldenable
-let s:l = 86 - ((53 * winheight(0) + 27) / 54)
+let s:l = 9055 - ((53 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 86
+keepjumps 9055
 normal! 03|
 lcd ~/Programming/Advent_Of_Code_2025
 wincmd w
@@ -200,7 +227,6 @@ if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
