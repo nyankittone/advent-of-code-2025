@@ -13,10 +13,12 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 term://~/Programming/Advent_Of_Code_2025//289675:/usr/bin/bash
+badd +62 term://~/Programming/Advent_Of_Code_2025//289675:/usr/bin/bash
 badd +1 src/main.rs
 badd +1 src/day1.rs
 badd +0 src/lib.rs
+badd +0 LICENSE
+badd +14 README.md
 argglobal
 %argdel
 set stal=2
@@ -137,8 +139,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 119 + 119) / 238)
-exe 'vert 2resize ' . ((&columns * 118 + 119) / 238)
+exe 'vert 1resize ' . ((&columns * 118 + 119) / 238)
+exe 'vert 2resize ' . ((&columns * 119 + 119) / 238)
 argglobal
 setlocal foldmethod=manual
 setlocal foldexpr=0
@@ -172,17 +174,17 @@ setlocal foldlevel=0
 setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldenable
-let s:l = 40 - ((39 * winheight(0) + 27) / 54)
+let s:l = 86 - ((53 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 40
+keepjumps 86
 normal! 03|
 lcd ~/Programming/Advent_Of_Code_2025
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 119 + 119) / 238)
-exe 'vert 2resize ' . ((&columns * 118 + 119) / 238)
+exe 'vert 1resize ' . ((&columns * 118 + 119) / 238)
+exe 'vert 2resize ' . ((&columns * 119 + 119) / 238)
 tabnext 2
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
