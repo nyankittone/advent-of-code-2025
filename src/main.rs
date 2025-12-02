@@ -16,6 +16,7 @@ mod day1;
 
 unsafe extern "C-unwind" {
     fn day0(input: &aoc::CDayInput) -> i64;
+    fn day2(input: &aoc::CDayInput) -> i64;
 }
 
 fn main() {
@@ -23,6 +24,7 @@ fn main() {
         let mut tmp_holder = aoc::FunctionHolder::with_capacity(32);
         tmp_holder.add_c_func(day0);
         tmp_holder.add_rust_func(day1::enter);
+        tmp_holder.add_c_func(day2);
 
         tmp_holder
     };
