@@ -14,8 +14,8 @@ else
   set shortmess=aoO
 endif
 badd +1 term://~/Programming/Advent_Of_Code_2025//289675:/usr/bin/bash
-badd +1 src/main.rs
-badd +32 src/day1.rs
+badd +29 src/main.rs
+badd +51 src/day1.rs
 badd +1 src/lib.rs
 badd +1 LICENSE
 badd +14 README.md
@@ -46,12 +46,13 @@ badd +22 man://sigqueue(3)
 badd +14 man://sigaction(3p)
 badd +0 man://sigaction(2)
 badd +0 man://signal(7)
+badd +4 src/day2.cpp
 argglobal
 %argdel
 set stal=2
 tabnew +setlocal\ bufhidden=wipe
 tabrewind
-edit src/lib.rs
+edit src/main.rs
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -78,7 +79,7 @@ exe 'vert 2resize ' . ((&columns * 118 + 119) / 238)
 exe '3resize ' . ((&lines * 22 + 28) / 57)
 exe 'vert 3resize ' . ((&columns * 118 + 119) / 238)
 argglobal
-balt src/main.rs
+balt src/lib.rs
 setlocal foldmethod=manual
 setlocal foldexpr=0
 setlocal foldmarker={{{,}}}
@@ -89,20 +90,20 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 27) / 54)
+let s:l = 64 - ((53 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
+keepjumps 64
 normal! 0
 lcd ~/Programming/Advent_Of_Code_2025
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/Programming/Advent_Of_Code_2025/src/main.rs", ":p")) | buffer ~/Programming/Advent_Of_Code_2025/src/main.rs | else | edit ~/Programming/Advent_Of_Code_2025/src/main.rs | endif
+if bufexists(fnamemodify("~/Programming/Advent_Of_Code_2025/src/lib.rs", ":p")) | buffer ~/Programming/Advent_Of_Code_2025/src/lib.rs | else | edit ~/Programming/Advent_Of_Code_2025/src/lib.rs | endif
 if &buftype ==# 'terminal'
-  silent file ~/Programming/Advent_Of_Code_2025/src/main.rs
+  silent file ~/Programming/Advent_Of_Code_2025/src/lib.rs
 endif
-balt term://~/Programming/Advent_Of_Code_2025//289675:/usr/bin/bash
+balt ~/Programming/Advent_Of_Code_2025/src/main.rs
 setlocal foldmethod=manual
 setlocal foldexpr=0
 setlocal foldmarker={{{,}}}
@@ -135,12 +136,12 @@ setlocal foldlevel=0
 setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldenable
-let s:l = 1 - ((0 * winheight(0) + 11) / 22)
+let s:l = 9055 - ((21 * winheight(0) + 11) / 22)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
-normal! 0
+keepjumps 9055
+normal! 03|
 lcd ~/Programming/Advent_Of_Code_2025
 wincmd w
 exe 'vert 1resize ' . ((&columns * 119 + 119) / 238)
@@ -149,7 +150,7 @@ exe 'vert 2resize ' . ((&columns * 118 + 119) / 238)
 exe '3resize ' . ((&lines * 22 + 28) / 57)
 exe 'vert 3resize ' . ((&columns * 118 + 119) / 238)
 tabnext
-edit ~/Programming/Advent_Of_Code_2025/src/day1.rs
+edit ~/Programming/Advent_Of_Code_2025/src/day2.cpp
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -169,6 +170,7 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 118 + 119) / 238)
 exe 'vert 2resize ' . ((&columns * 119 + 119) / 238)
 argglobal
+balt ~/Programming/Advent_Of_Code_2025/src/day1.rs
 setlocal foldmethod=manual
 setlocal foldexpr=0
 setlocal foldmarker={{{,}}}
@@ -179,12 +181,12 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 42 - ((41 * winheight(0) + 27) / 54)
+let s:l = 6 - ((5 * winheight(0) + 27) / 54)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 42
-normal! 016|
+keepjumps 6
+normal! 0
 lcd ~/Programming/Advent_Of_Code_2025
 wincmd w
 argglobal
@@ -206,10 +208,9 @@ if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 9055
-normal! 03|
+normal! 0
 lcd ~/Programming/Advent_Of_Code_2025
 wincmd w
-2wincmd w
 exe 'vert 1resize ' . ((&columns * 118 + 119) / 238)
 exe 'vert 2resize ' . ((&columns * 119 + 119) / 238)
 tabnext 2
