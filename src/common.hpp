@@ -2,8 +2,8 @@
 
 namespace aoc {
     enum class DayPart {
-        DayOne,
-        DayTwo,
+        PartOne,
+        PartTwo,
     };
 
     extern "C" struct DayInput {

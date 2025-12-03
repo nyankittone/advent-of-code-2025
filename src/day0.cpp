@@ -60,7 +60,7 @@ std::int64_t gimmeAnswerPls(const std::string_view &input) {
 
 enter(day0) {
     std::string_view input_repr(input->text, input->text_length);
-    return input->day_part == aoc::DayPart::DayOne ?
+    return input->day_part == aoc::DayPart::PartOne ?
         gimmeAnswerPls<1>(input_repr) : gimmeAnswerPls<3>(input_repr); 
 }
 

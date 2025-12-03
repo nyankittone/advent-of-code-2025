@@ -78,7 +78,7 @@ enter(day2) {
         std::string_view right(field.data() + left_length + 1, field.size() - left_length);
 
         returned += sumInvalid (
-            input->day_part == aoc::DayPart::DayOne ? &isValid1 : &isValid2,
+            input->day_part == aoc::DayPart::PartOne ? &isValid1 : &isValid2,
             std::stol(left.data()),
             std::stol(right.data())
         );

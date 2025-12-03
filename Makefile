@@ -27,7 +27,7 @@ all: archive
 archive: $(objects)
 	ar rcs $(obj_dir)/lib$(archive_name).a $^
 
-$(obj_dir)/%.o: $(source_dir)/%.cpp | $(obj_dir)
+$(obj_dir)/%.o: $(source_dir)/%.cpp $(source_dir)/common.hpp | $(obj_dir)
 	$(compiler) $(CXXFLAGS) -c $< -o $@
 
 $(obj_dir):

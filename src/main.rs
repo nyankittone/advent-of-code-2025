@@ -13,6 +13,7 @@ use aoc_2025 as aoc;
 // and a C ABI function on each day addition... which is not ideal. It would be awesome if
 // rust-analyzer was able to resolve macros to find submodules getting called, but alas.
 mod day1;
+mod day3;
 
 unsafe extern "C-unwind" {
     fn day0(input: &aoc::CDayInput) -> i64;
@@ -25,6 +26,7 @@ fn main() {
         tmp_holder.add_c_func(day0);
         tmp_holder.add_rust_func(day1::enter);
         tmp_holder.add_c_func(day2);
+        tmp_holder.add_rust_func(day3::enter);
 
         tmp_holder
     };
