@@ -23,7 +23,7 @@ class CalorieCollection {
         };
 
         void addRecord(const std::int64_t record) {
-            for(auto i = 0; i < SIZE; i++) {
+            for(std::size_t i = 0; i < SIZE; i++) {
                 if(record > data[i]) {
                     std::memmove(data.data() + i + 1, data.data() + i, sizeof(std::int64_t) * (SIZE - i - 1));
                     data[i] = record;

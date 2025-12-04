@@ -2,6 +2,7 @@
 #include <ranges>
 #include <set>
 #include <vector>
+#include <algorithm>
 
 #include "common.hpp"
 
@@ -88,7 +89,7 @@ class Rolls {
                 }
 
                 return data[index] == '@' ? true:false;
-            } catch(std::out_of_range e) {
+            } catch(std::out_of_range &e) {
                 return false;
             }
         }
@@ -103,8 +104,8 @@ std::int64_t part1(Rolls &rolls) {
     std::int64_t returned = 0;
     auto shape = rolls.getShape();
 
-    for(auto y = 0; y < shape.y; y++) {
-        for(auto x = 0; x < shape.x; x++) {
+    for(std::uint64_t y = 0; y < shape.y; y++) {
+        for(std::uint64_t x = 0; x < shape.x; x++) {
             if(rolls.isRoll(x, y) && rolls.getAdjacentRolls(x, y) < 4) {
                 returned++;
             }
@@ -121,12 +122,8 @@ std::int64_t part2(Rolls &rolls) {
     while(true) {
         std::set<XY> removed{};
 
-        for(auto y = 0; y < shape.y; y++) {
-            for(auto x = 0; x < shape.x; x++) {
-                // if(rolls.isRoll(x, y)) {
-                //     std::println("bruh {}, {}, {}: {} rolls adjacent",bruh, x, y, rolls.getAdjacentRolls(x, y));
-                // }
-
+        for(uint64_t y = 0; y < shape.y; y++) {
+            for(uint64_t x = 0; x < shape.x; x++) {
                 if(rolls.isRoll(x, y) && rolls.getAdjacentRolls(x, y) < 4) {
                     // std::println("match!");
                     returned++;

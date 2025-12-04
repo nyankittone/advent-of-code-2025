@@ -18,7 +18,7 @@ sources := $(wildcard $(source_dir)/*.cpp)
 objects := $(patsubst $(source_dir)/%.cpp,$(obj_dir)/%.o,$(sources))
 
 compiler := g++
-CXXFLAGS := -std=c++23 -Wall -pedantic-errors -Werror=return-type -g -ggdb -Og
+CXXFLAGS := -std=c++23 -Wall -pedantic-errors -Werror=return-type -g -ggdb -Og -Werror
 
 .PHONY: all clean archive
 

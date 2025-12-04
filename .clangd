@@ -3,5 +3,5 @@ If:
 
 CompileFlags:
   Compiler: clang++
-  Add: [-std=c++23, -Wall, -pedantic-errors, -Werror=return-type]
+  Add: [-std=c++23, -Wall, -pedantic-errors, -Werror=return-type, -Werror]
 
