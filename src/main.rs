@@ -14,6 +14,7 @@ use aoc_2025 as aoc;
 // rust-analyzer was able to resolve macros to find submodules getting called, but alas.
 mod day1;
 mod day3;
+mod day5;
 
 unsafe extern "C-unwind" {
     fn day0(input: &aoc::CDayInput) -> i64;
@@ -29,6 +30,7 @@ fn main() {
         tmp_holder.add_c_func(day2);
         tmp_holder.add_rust_func(day3::enter);
         tmp_holder.add_c_func(day4);
+        tmp_holder.add_rust_func(day5::enter);
 
         tmp_holder
     };
