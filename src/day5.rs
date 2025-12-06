@@ -96,6 +96,6 @@ pub fn enter(input: &aoc::DayInput) -> i64 {
         return returned;
     }
 
-    ranges.iter().map(|(lower, upper)| (upper - lower) + 1).sum()
+    ranges.iter().map(|x| x.1 - x.0 + 1).sum()
 }
 

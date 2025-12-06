@@ -20,6 +20,7 @@ unsafe extern "C-unwind" {
     fn day0(input: &aoc::CDayInput) -> i64;
     fn day2(input: &aoc::CDayInput) -> i64;
     fn day4(input: &aoc::CDayInput) -> i64;
+    fn day6(input: &aoc::CDayInput) -> i64;
 }
 
 fn main() {
@@ -31,6 +32,7 @@ fn main() {
         tmp_holder.add_rust_func(day3::enter);
         tmp_holder.add_c_func(day4);
         tmp_holder.add_rust_func(day5::enter);
+        tmp_holder.add_c_func(day6);
 
         tmp_holder
     };
