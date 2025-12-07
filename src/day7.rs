@@ -3,7 +3,6 @@ use std::ops::Deref;
 
 use aoc_2025 as aoc;
 
-// For part 2, a binary tree data structure makes some sense here...
 // Actually, no, maybe a recursive solution makes some sense!
 
 fn part1<'a, I: Iterator<Item = &'a str>>(mut lines: I) -> i64 {
@@ -38,6 +37,7 @@ fn part1<'a, I: Iterator<Item = &'a str>>(mut lines: I) -> i64 {
     returned
 }
 
+// Type the "inherits" from a HashMap by abusing the Deref trait
 struct FindingMemo {
     map: HashMap<(usize, usize), i64>,
 }
@@ -86,10 +86,7 @@ where I: Clone + Iterator<Item = (usize, &'a str)> {
 
 fn part2<'a, I: Clone + Iterator<Item = &'a str>>(mut lines: I) -> i64 {
     let first_line = lines.next().unwrap();
-
     let beam_index = first_line.bytes().position(|x| x == 'S' as u8).unwrap();
-    let width = first_line.chars().count();
-
     let mut memo = FindingMemo::new();
 
     part2_rec(lines.enumerate().clone(), beam_index, 0, &mut memo)
