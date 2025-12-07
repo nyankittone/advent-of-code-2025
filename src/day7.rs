@@ -1,3 +1,6 @@
+use std::collections::HashMap;
+use std::ops::Deref;
+
 use aoc_2025 as aoc;
 
 // For part 2, a binary tree data structure makes some sense here...
@@ -35,16 +38,46 @@ fn part1<'a, I: Iterator<Item = &'a str>>(mut lines: I) -> i64 {
     returned
 }
 
-fn part2_rec<'a, I>(mut lines: I, beam_index: isize, width: usize) -> i64
-where I: Clone + Iterator<Item = &'a str> {
-    if beam_index < 0 || beam_index >= (width as isize) {
-        return 1;
+struct FindingMemo {
+    map: HashMap<(usize, usize), i64>,
+}
+
+impl Deref for FindingMemo {
+    type Target = HashMap<(usize, usize), i64>;
+
+    fn deref(&self) -> &Self::Target {
+        &self.map
+    }
+}
+
+impl FindingMemo {
+    fn new() -> Self {
+        Self {
+            map: HashMap::new(),
+        }
     }
 
-    while let Some(line) = lines.next() {
+    fn put_range(&mut self, from: usize, to: usize, column: usize, data: i64) {
+        for row in from..=to {
+            self.map.insert((column, row), data);
+        }
+    }
+}
+
+fn part2_rec<'a, I>(mut lines: I, beam_index: usize, row: usize, memo: &mut FindingMemo) -> i64
+where I: Clone + Iterator<Item = (usize, &'a str)> {
+    if let Some(value) = memo.get(&(beam_index, row)) {
+        return *value;
+    }
+
+    while let Some((current_row, line)) = lines.next() {
         if line.as_bytes()[beam_index as usize] == '^' as u8 {
-            return part2_rec(lines.clone(), beam_index - 1, width) +
-                part2_rec(lines.clone(), beam_index + 1, width);
+            let returned = part2_rec(lines.clone(), beam_index - 1, current_row + 1, memo) +
+                part2_rec(lines.clone(), beam_index + 1, current_row + 1, memo);
+
+            memo.put_range(row, current_row, beam_index, returned);
+
+            return returned;
         }
     }
 
@@ -54,11 +87,12 @@ where I: Clone + Iterator<Item = &'a str> {
 fn part2<'a, I: Clone + Iterator<Item = &'a str>>(mut lines: I) -> i64 {
     let first_line = lines.next().unwrap();
 
-    // let beam_index: isize = first_line.chars().position(|x| x == 'S').unwrap().try_into().unwrap();
-    let beam_index: isize = first_line.bytes().position(|x| x == 'S' as u8).unwrap().try_into().unwrap();
-    let width: usize = first_line.chars().count();
+    let beam_index = first_line.bytes().position(|x| x == 'S' as u8).unwrap();
+    let width = first_line.chars().count();
 
-    part2_rec(lines.clone(), beam_index, width)
+    let mut memo = FindingMemo::new();
+
+    part2_rec(lines.enumerate().clone(), beam_index, 0, &mut memo)
 }
 
 pub fn enter(input: &aoc::DayInput) -> i64 {
