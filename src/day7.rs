@@ -42,7 +42,7 @@ where I: Clone + Iterator<Item = &'a str> {
     }
 
     while let Some(line) = lines.next() {
-        if line.chars().nth(beam_index as usize).unwrap() == '^' {
+        if line.as_bytes()[beam_index as usize] == '^' as u8 {
             return part2_rec(lines.clone(), beam_index - 1, width) +
                 part2_rec(lines.clone(), beam_index + 1, width);
         }
@@ -54,7 +54,8 @@ where I: Clone + Iterator<Item = &'a str> {
 fn part2<'a, I: Clone + Iterator<Item = &'a str>>(mut lines: I) -> i64 {
     let first_line = lines.next().unwrap();
 
-    let beam_index: isize = first_line.chars().position(|x| x == 'S').unwrap().try_into().unwrap();
+    // let beam_index: isize = first_line.chars().position(|x| x == 'S').unwrap().try_into().unwrap();
+    let beam_index: isize = first_line.bytes().position(|x| x == 'S' as u8).unwrap().try_into().unwrap();
     let width: usize = first_line.chars().count();
 
     part2_rec(lines.clone(), beam_index, width)
@@ -64,6 +65,6 @@ pub fn enter(input: &aoc::DayInput) -> i64 {
     (match input.day_part {
         aoc::DayPart::PartOne => part1,
         aoc::DayPart::PartTwo => part2,
-    })(input.text.lines())
+    })(input.text.lines().enumerate().filter(|x| x.0 % 2 == 0).map(|x| x.1))
 }
 
