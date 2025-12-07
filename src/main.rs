@@ -1,5 +1,3 @@
-
-
 use std::{
     io,
     fs,
@@ -64,11 +62,14 @@ fn main() {
     };
 
     let day_input = aoc::DayInput::new(file_contents.as_str(), params.part);
+    let day_result = holder.run_day(params.day, &day_input);
+
     println! (
-        "Day {}, part {}: Got back {}",
+        "Day {}, part {}: Got back {}\nTook {} μs",
         params.day,
         params.part.get_numeric(),
-        holder.run_day(params.day, &day_input)
+        day_result.result(),
+        day_result.elapsed()
     );
 }
 

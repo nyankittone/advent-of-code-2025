@@ -8,6 +8,7 @@ use std::{
     env,
     fmt,
     ffi,
+    time,
 };
 
 #[repr(C)]
@@ -169,6 +170,22 @@ pub struct FunctionHolder {
     functions: Vec<RustOrCFunction>,
 }
 
+#[derive(Default)]
+pub struct HolderResult {
+    result: i64,
+    micros_elapsed: u128,
+}
+
+impl HolderResult {
+    pub fn result(&self) -> i64 {
+        self.result
+    }
+
+    pub fn elapsed(&self) -> u128 {
+        self.micros_elapsed
+    }
+}
+
 impl FunctionHolder {
     pub fn new() -> Self {
         Self {
@@ -190,11 +207,17 @@ impl FunctionHolder {
         self.functions.push(RustOrCFunction::C(func));
     }
 
-    pub fn run_day(&self, day: u32, day_input: &DayInput) -> i64 {
-        match self.functions[day as usize] {
+    pub fn run_day(&self, day: u32, day_input: &DayInput) -> HolderResult {
+        let mut returned = HolderResult::default();
+        let before_time = time::Instant::now();
+
+        returned.result = match self.functions[day as usize] {
             RustOrCFunction::Rust(func) => func(day_input),
             RustOrCFunction::C(func) => unsafe {func(&CDayInput::from(day_input))},
-        }
+        };
+
+        returned.micros_elapsed = before_time.elapsed().as_micros();
+        returned
     }
 }
 
