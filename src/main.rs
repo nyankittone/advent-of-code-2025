@@ -15,6 +15,7 @@ use aoc_2025 as aoc;
 mod day1;
 mod day3;
 mod day5;
+mod day7;
 
 unsafe extern "C-unwind" {
     fn day0(input: &aoc::CDayInput) -> i64;
@@ -33,6 +34,7 @@ fn main() {
         tmp_holder.add_c_func(day4);
         tmp_holder.add_rust_func(day5::enter);
         tmp_holder.add_c_func(day6);
+        tmp_holder.add_rust_func(day7::enter);
 
         tmp_holder
     };

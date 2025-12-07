@@ -160,7 +160,7 @@ std::int64_t solvePart2(std::string_view text) {
 enter(day6) {
     std::string_view text(input->text, input->text_length);
     std::vector<std::vector<std::string_view>> bullshit{};
-    
+
     if(input->day_part == aoc::DayPart::PartTwo) {
         return solvePart2(text);
     }
