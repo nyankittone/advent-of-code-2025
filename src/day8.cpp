@@ -16,15 +16,18 @@ class CircuitGroup {
         std::vector<std::vector<triplet>> groups;
 
     public:
+        // I am going to concede defeat for this AoC day for now... I cannot implement this function
+        // right after multiple hours. After all the AoC questions are done, I should re-analyze
+        // this problem more deeply, and/or use ChatGPT to better understand the problem at hand.
         bool addPair(const triplet &x, const triplet &y) {
             // Figure out the circuit to add this pair to
-            std::println("Adding pair");
-
+            // BUG: There is something wrong with this for loop.
             for(std::vector circuit : groups) {
                 // if neither first reference found in circuit nor second reference found, continue;
                 if(std::find(circuit.begin(), circuit.end(), x) == circuit.end()) {
                     if(std::find(circuit.begin(), circuit.end(), y) == circuit.end()) {
                         // found none
+                        std::println("FUCK");
                         continue;
                     }
 
@@ -39,13 +42,26 @@ class CircuitGroup {
                     return true;
                 }
 
-                std::println("whar");
-
                 // found both
                 return false;
             }
 
-            std::println("Made it here");
+            // I promise I did not vibe-code this. I'm just bad.
+            if(groups.size() > 1) {
+                std::println("WOW MEOW");
+            for(std::size_t i = 0; i < groups.size() - 1; i++) {
+                for(std::size_t ii = i + 1; ii < groups.size(); ii++) {
+                    if((std::find(groups[i].begin(), groups[i].end(), x) != groups[i].end() &&
+                        std::find(groups[ii].begin(), groups[i].end(), y) != groups[ii].end()) ||
+                    (std::find(groups[i].begin(), groups[i].end(), y) != groups[i].end() &&
+                     std::find(groups[ii].begin(), groups[i].end(), x) != groups[ii].end())) {
+                        // merge shit idfk
+                        groups[i].insert(groups[i].end(), groups[ii].begin(), groups[ii].end());
+                        return true;
+                    }
+                }
+            }
+            }
 
             // If we couldn't, make a new circuit
             groups.push_back(std::vector<triplet>{});
