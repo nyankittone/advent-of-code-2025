@@ -39,6 +39,8 @@ class CircuitGroup {
                     return true;
                 }
 
+                std::println("whar");
+
                 // found both
                 return false;
             }
